@@ -1,0 +1,35 @@
+{
+  "name": "deepclone",
+  "version": "1.0.0",
+  "description": "A utility function to create deep clones of JavaScript values",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "clone",
+    "deep-clone",
+    "utility",
+    "javascript",
+    "object-clone",
+    "deep-copy"
+  ],
+  "author": {
+    "name": "Bhupendra Singh Bhandari",
+    "email": "bsbhandari@gmail.com",
+    "url": "https://github.com/bsbhandari"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsbhandari/deepclone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bsbhandari/deepclone/issues"
+  },
+  "homepage": "https://github.com/bsbhandari/deepclone#readme",
+  "license": "ISC",
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
