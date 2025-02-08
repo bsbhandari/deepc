@@ -1,4 +1,4 @@
-const deepClone = require('./index.js');
+const deepc = require('./index.js');
 
 // Test helper function
 function runTest(testName, callback) {
@@ -25,7 +25,7 @@ function runTests() {
         ];
 
         primitives.forEach(value => {
-            const cloned = deepClone(value);
+            const cloned = deepc(value);
             if (value !== cloned) {
                 throw new Error(`Failed to clone primitive value: ${value}`);
             }
@@ -35,7 +35,7 @@ function runTests() {
     // Test 2: Simple objects
     runTest('Simple objects', () => {
         const original = { a: 1, b: 'string', c: true };
-        const cloned = deepClone(original);
+        const cloned = deepc(original);
         
         if (JSON.stringify(original) !== JSON.stringify(cloned)) {
             throw new Error('Simple object clone mismatch');
@@ -51,7 +51,7 @@ function runTests() {
             a: { b: { c: 1 } },
             d: [{ e: 2 }]
         };
-        const cloned = deepClone(original);
+        const cloned = deepc(original);
 
         if (JSON.stringify(original) !== JSON.stringify(cloned)) {
             throw new Error('Nested object clone mismatch');
@@ -64,7 +64,7 @@ function runTests() {
     // Test 4: Arrays
     runTest('Arrays', () => {
         const original = [1, [2, 3], [4, [5, 6]]];
-        const cloned = deepClone(original);
+        const cloned = deepc(original);
 
         if (JSON.stringify(original) !== JSON.stringify(cloned)) {
             throw new Error('Array clone mismatch');
@@ -79,7 +79,7 @@ function runTests() {
         const original = { a: 1 };
         original.self = original;
         
-        const cloned = deepClone(original);
+        const cloned = deepc(original);
         if (cloned.self !== cloned) {
             throw new Error('Circular reference not handled correctly');
         }
@@ -96,7 +96,7 @@ function runTests() {
             set: new Set([1, 2, 3])
         };
         
-        const cloned = deepClone(original);
+        const cloned = deepc(original);
         
         if (!(cloned.date instanceof Date)) throw new Error('Date not cloned correctly');
         if (!(cloned.regex instanceof RegExp)) throw new Error('RegExp not cloned correctly');
@@ -129,7 +129,7 @@ function runTests() {
         ];
 
         testCases.forEach(value => {
-            const cloned = deepClone(value);
+            const cloned = deepc(value);
             if (value === cloned) {
                 throw new Error(`Failed to create new instance for type: ${value.constructor.name}`);
             }
@@ -138,6 +138,6 @@ function runTests() {
 }
 
 // Run all tests
-console.log('Starting deepClone tests...\n');
+console.log('Starting deepc tests...\n');
 runTests();
 console.log('\nTests completed.'); 

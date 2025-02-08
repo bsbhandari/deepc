@@ -1,0 +1,94 @@
+# Query: deepclone
+# ContextLines: 1
+
+25 results - 4 files
+
+index.js:
+    6   */
+    7: function deepc(value, visited = new WeakMap()) {
+    8      // Handle null and undefined
+
+   37          value.forEach((item, index) => {
+   38:             clonedArray[index] = deepc(item, visited);
+   39          });
+
+   47          value.forEach((val, key) => {
+   48:             clonedMap.set(deepc(key, visited), deepc(val, visited));
+   49          });
+
+   57          value.forEach(val => {
+   58:             clonedSet.add(deepc(val, visited));
+   59          });
+
+  104          if (descriptor.value !== undefined) {
+  105:             descriptor.value = deepc(descriptor.value, visited);
+  106          }
+
+  112  
+  113: module.exports = deepc; 
+
+package.json:
+   1  {
+   2:   "name": "deepc",
+   3    "version": "1.0.0",
+
+  24      "type": "git",
+  25:     "url": "git+https://github.com/bsbhandari/deepc.git"
+  26    },
+  27    "bugs": {
+  28:     "url": "https://github.com/bsbhandari/deepc/issues"
+  29    },
+  30:   "homepage": "https://github.com/bsbhandari/deepc#readme",
+  31    "license": "ISC",
+
+README.md:
+   1: # deepc
+   2  
+
+  18  ```bash
+  19: npm install deepc
+  20  ```
+
+  24  ```javascript
+  25: const deepc = require('deepc');
+  26  
+
+  36  
+  37: const cloned = deepc(original);
+  38  
+
+test.js:
+    1: const deepc = require('./index.js');
+    2  
+
+   27          primitives.forEach(value => {
+   28:             const cloned = deepc(value);
+   29              if (value !== cloned) {
+
+   37          const original = { a: 1, b: 'string', c: true };
+   38:         const cloned = deepc(original);
+   39          
+
+   53          };
+   54:         const cloned = deepc(original);
+   55  
+
+   66          const original = [1, [2, 3], [4, [5, 6]]];
+   67:         const cloned = deepc(original);
+   68  
+
+   81          
+   82:         const cloned = deepc(original);
+   83          if (cloned.self !== cloned) {
+
+   98          
+   99:         const cloned = deepc(original);
+  100          
+
+  131          testCases.forEach(value => {
+  132:             const cloned = deepc(value);
+  133              if (value === cloned) {
+
+  140  // Run all tests
+  141: console.log('Starting deepc tests...\n');
+  142  runTests();

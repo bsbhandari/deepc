@@ -16,13 +16,13 @@ A robust and feature-rich utility for creating deep clones of JavaScript values.
 ## Installation
 
 ```bash
-npm install deepclone
+npm install deepc
 ```
 
 ## Usage
 
 ```javascript
-const deepClone = require('deepclone');
+const deepc = require('deepc');
 
 const original = {
     name: 'John',
@@ -34,7 +34,7 @@ const original = {
     }
 };
 
-const cloned = deepClone(original);
+const cloned = deepc(original);
 
 console.log(cloned);
 ```

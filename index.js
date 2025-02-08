@@ -4,7 +4,7 @@
  * @param {WeakMap} [visited=new WeakMap()] - Internal map to track circular references
  * @returns {*} A deep clone of the input value
  */
-function deepClone(value, visited = new WeakMap()) {
+function deepc(value, visited = new WeakMap()) {
     // Handle null and undefined
     if (value === null || value === undefined) {
         return value;
@@ -35,7 +35,7 @@ function deepClone(value, visited = new WeakMap()) {
         const clonedArray = [];
         visited.set(value, clonedArray);
         value.forEach((item, index) => {
-            clonedArray[index] = deepClone(item, visited);
+            clonedArray[index] = deepc(item, visited);
         });
         return clonedArray;
     }
@@ -45,7 +45,7 @@ function deepClone(value, visited = new WeakMap()) {
         const clonedMap = new Map();
         visited.set(value, clonedMap);
         value.forEach((val, key) => {
-            clonedMap.set(deepClone(key, visited), deepClone(val, visited));
+            clonedMap.set(deepc(key, visited), deepc(val, visited));
         });
         return clonedMap;
     }
@@ -55,7 +55,7 @@ function deepClone(value, visited = new WeakMap()) {
         const clonedSet = new Set();
         visited.set(value, clonedSet);
         value.forEach(val => {
-            clonedSet.add(deepClone(val, visited));
+            clonedSet.add(deepc(val, visited));
         });
         return clonedSet;
     }
@@ -102,7 +102,7 @@ function deepClone(value, visited = new WeakMap()) {
     const descriptors = Object.getOwnPropertyDescriptors(value);
     for (const [key, descriptor] of Object.entries(descriptors)) {
         if (descriptor.value !== undefined) {
-            descriptor.value = deepClone(descriptor.value, visited);
+            descriptor.value = deepc(descriptor.value, visited);
         }
         Object.defineProperty(clonedObj, key, descriptor);
     }
@@ -110,4 +110,4 @@ function deepClone(value, visited = new WeakMap()) {
     return clonedObj;
 }
 
-module.exports = deepClone; 
+module.exports = deepc; 
